@@ -21,5 +21,5 @@ func search(values []int, v int) (int, bool) {
 		}
 	}
 
-	return -1, false
+	return 0, false
 }
