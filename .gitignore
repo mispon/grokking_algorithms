@@ -1,0 +1,9 @@
+# Editor specific
+.idea
+.run
+.vscode
+*.swp
+bin/
+
+# Project specific
+vendor/
