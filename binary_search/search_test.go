@@ -3,7 +3,7 @@ package binary_search
 import (
 	"testing"
 
-	sl "github.com/grokking_algorithms/libs/slice"
+	sl "github.com/mispon/grokking_algorithms/libs/slice"
 	"github.com/stretchr/testify/require"
 )
 
