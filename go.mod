@@ -1,4 +1,4 @@
-module github.com/grokking_algorithms
+module github.com/mispon/grokking_algorithms
 
 go 1.18
 
