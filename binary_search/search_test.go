@@ -3,7 +3,7 @@ package binary_search
 import (
 	"testing"
 
-	sl "github.com/mispon/grokking_algorithms/libs/slice"
+	sort "github.com/mispon/grokking_algorithms/selection_sort"
 	"github.com/stretchr/testify/require"
 )
 
@@ -55,7 +55,7 @@ func Test_search(t *testing.T) {
 	for _, tc := range testCases {
 		t.Run("", func(t *testing.T) {
 			// arrange
-			values := sl.Sort(tc.values)
+			values := sort.SortInt(tc.values)
 
 			// act
 			idx, ok := search(values, tc.item)
