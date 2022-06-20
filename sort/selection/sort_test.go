@@ -1,4 +1,4 @@
-package selection_sort
+package selection
 
 import (
 	"math/rand"
@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func Test_SortInt(t *testing.T) {
+func Test_Sort(t *testing.T) {
 	testCases := []struct {
 		values   []int
 		expected []int

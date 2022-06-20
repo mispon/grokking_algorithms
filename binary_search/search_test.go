@@ -3,7 +3,7 @@ package binary_search
 import (
 	"testing"
 
-	selection "github.com/mispon/grokking_algorithms/selection_sort"
+	"github.com/mispon/grokking_algorithms/sort/selection"
 	"github.com/stretchr/testify/require"
 )
 

@@ -1,4 +1,4 @@
-package quick_sort
+package quick
 
 func Sort(values []int) []int {
 	return values
