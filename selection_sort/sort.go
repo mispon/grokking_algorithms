@@ -1,6 +1,6 @@
 package selection_sort
 
-func SortInt(values []int) []int {
+func Sort(values []int) []int {
 	for i := 0; i < len(values)-1; i++ {
 		minIdx := i
 		for j := i + 1; j < len(values); j++ {
