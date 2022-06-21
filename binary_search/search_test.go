@@ -3,7 +3,7 @@ package binary_search
 import (
 	"testing"
 
-	"github.com/mispon/grokking_algorithms/sort/selection"
+	"github.com/mispon/grokking_algorithms/sort/quick"
 	"github.com/stretchr/testify/require"
 )
 
@@ -54,7 +54,7 @@ func Test_search(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run("", func(t *testing.T) {
-			values := selection.Sort(tc.values)
+			values := quick.Sort(tc.values)
 
 			idx, ok := search(values, tc.item)
 
@@ -111,7 +111,7 @@ func Test_rsearch(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run("", func(t *testing.T) {
-			values := selection.Sort(tc.values)
+			values := quick.Sort(tc.values)
 
 			idx, ok := rsearch(values, tc.item, 0, len(values))
 
