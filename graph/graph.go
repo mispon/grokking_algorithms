@@ -1,5 +1,7 @@
 package graph
 
+import "fmt"
+
 type (
 	// Node represents single graph node
 	Node struct {
@@ -20,4 +22,21 @@ type (
 // AsGraph returns node as graph root
 func (n *Node) AsGraph() *Graph {
 	return (*Graph)(n)
+}
+
+func (g *Graph) AsNode() *Node {
+	return (*Node)(g)
+}
+
+// Print display all nodes with tab inted
+func (g *Graph) Print() {
+	printNode(g.AsNode(), "")
+}
+
+// printNode recursivly prints nodes
+func printNode(n *Node, intend string) {
+	fmt.Println(intend, n.Key)
+	for _, sn := range n.Nodes {
+		printNode(sn, intend+"\t")
+	}
 }
