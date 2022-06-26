@@ -3,9 +3,9 @@ package graph
 import "math"
 
 // FindPath search for shortest path uses Dijkstra algorythm
-func (g *Graph) FindPath(target string) (int, bool) {
+func (g *Graph) FindPath(target string) (string, int, bool) {
 	if g == nil || len(g.Nodes) == 0 || target == "" {
-		return 0, false
+		return "", 0, false
 	}
 
 	var (
@@ -33,7 +33,7 @@ func (g *Graph) FindPath(target string) (int, bool) {
 		node = findLowerCostNode(g, costs, processed)
 	}
 
-	return costs[target], true
+	return buildPath(parents, target), costs[target], true
 }
 
 func findLowerCostNode(g *Graph, costs map[string]int, processed map[string]bool) *Node {
@@ -54,4 +54,23 @@ func findLowerCostNode(g *Graph, costs map[string]int, processed map[string]bool
 	})
 
 	return node
+}
+
+func buildPath(parents map[string]string, target string) string {
+	steps := []string{target}
+
+	n := parents[target]
+	for n != "" {
+		steps = append(steps, n)
+		n = parents[n]
+	}
+
+	path := ""
+	for i := len(steps) - 1; i >= 0; i-- {
+		path += steps[i]
+		if i > 0 {
+			path += " -> "
+		}
+	}
+	return path
 }

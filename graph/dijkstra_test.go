@@ -15,14 +15,14 @@ func Test_FindPath(t *testing.T) {
 		c := &Node{
 			Key: "c",
 			Value: map[string]any{
-				"d": 2,
+				"d": 1,
 			},
 			Nodes: []*Node{d},
 		}
 		b := &Node{
 			Key: "b",
 			Value: map[string]any{
-				"c": 1,
+				"c": 3,
 				"d": 5,
 			},
 			Nodes: []*Node{c, d},
@@ -30,8 +30,8 @@ func Test_FindPath(t *testing.T) {
 		a := &Node{
 			Key: "a",
 			Value: map[string]any{
-				"b": 4,
-				"c": 3,
+				"b": 2,
+				"c": 6,
 			},
 			Nodes: []*Node{b, c},
 		}
@@ -42,8 +42,9 @@ func Test_FindPath(t *testing.T) {
 	t.Run("empty graph", func(t *testing.T) {
 		g := &Graph{}
 
-		cost, ok := g.FindPath("foo")
+		path, cost, ok := g.FindPath("foo")
 
+		require.Empty(t, path)
 		require.Zero(t, cost)
 		require.False(t, ok)
 	})
@@ -51,9 +52,10 @@ func Test_FindPath(t *testing.T) {
 	t.Run("find shortest path", func(t *testing.T) {
 		g := graphFactory()
 
-		cost, ok := g.FindPath("d")
+		path, cost, ok := g.FindPath("d")
 
-		require.Equal(t, 5, cost)
+		require.Equal(t, "a -> b -> c -> d", path)
+		require.Equal(t, 6, cost)
 		require.True(t, ok)
 	})
 }
