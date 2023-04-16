@@ -1,4 +1,4 @@
-package search
+package graph
 
 import (
 	"testing"
@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func Test_BFS(t *testing.T) {
+func Test_DFS(t *testing.T) {
 	tests := []struct {
 		graph  *types.GraphNode[int]
 		target int
@@ -86,14 +86,23 @@ func Test_BFS(t *testing.T) {
 									},
 								},
 							},
-							{Value: 11},
-							{Value: 12},
+							{
+								Value:     11,
+								Neighbors: nil,
+							},
+							{
+								Value:     12,
+								Neighbors: nil,
+							},
 						},
 					},
 					{
 						Value: 4,
 						Neighbors: []*types.GraphNode[int]{
-							{Value: 30},
+							{
+								Value:     30,
+								Neighbors: nil,
+							},
 						},
 					},
 				},
@@ -102,15 +111,52 @@ func Test_BFS(t *testing.T) {
 			want: &types.GraphNode[int]{
 				Value: 4,
 				Neighbors: []*types.GraphNode[int]{
-					{Value: 30},
+					{
+						Value:     31,
+						Neighbors: nil,
+					},
 				},
 			},
+		},
+		{
+			graph: &types.GraphNode[int]{
+				Value: 1,
+				Neighbors: []*types.GraphNode[int]{
+					{
+						Value:     2,
+						Neighbors: nil,
+					},
+					{
+						Value: 3,
+						Neighbors: []*types.GraphNode[int]{
+							{
+								Value:     4,
+								Neighbors: nil,
+							},
+							{
+								Value:     11,
+								Neighbors: nil,
+							},
+							{
+								Value:     12,
+								Neighbors: nil,
+							},
+						},
+					},
+					{
+						Value:     4,
+						Neighbors: nil,
+					},
+				},
+			},
+			target: 57,
+			want:   nil,
 		},
 	}
 
 	for _, tc := range tests {
 		t.Run("", func(t *testing.T) {
-			node := BFS(tc.graph, tc.target)
+			node := DFS(tc.graph, tc.target)
 			require.Equal(t, tc.want, node)
 		})
 	}
